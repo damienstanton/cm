@@ -109,26 +109,29 @@ All tests passed (2 assertions in 1 test case)
 
 ## Help
 
-See `cm -help` for all options:
+See `cm -help` for options, all of which are optional:
 
 ```console
-Usage of ./cm:
+Usage of cm:
   -I string
-        path to header files (optional, default is target dir)
+    	path to header files
   -compiler string
-        c++ compiler to use (default "g++")
+    	c++ compiler to use (default "g++")
   -max
-        maximum optimization (optional, default is off)
+    	maximum optimization
   -o string
-        name of the output binary (optional, default is name of target dir)
+    	name of the output binary
   -std string
-        c++ standard library to use (default "c++2a")
+    	c++ standard library to use (default "c++2a")
+  -test
+    	run tests using Catch2
 ```
 
 ## Considerations
 
+- This is very poorly tested, there are likely lots of edge cases
 - This toy is made for my own purposes iterating small C++ programs (e.g. code interviews, competitive exercises, etc.)
-- I would not use it for anything "serious", but feel free to use it as a starting point for a better automation tool.
+- I would not use it for anything "serious", but feel free to use it as a starting point for a better automation tool
 
 ## Features & TODOs
 
