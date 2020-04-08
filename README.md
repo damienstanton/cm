@@ -32,8 +32,10 @@ example
 
 ## Compiling
 
+Here we build a toy program that prints some input based on args, and uses a CGo-generated dynamic shared library which
+`cm` has linked in for us.
+
 ```console
-# suppose we are in the example dir in this repo
 $ cm
 ╔═════════════════════════╗
 ║ Compiler Manager v0.1.0 ║
@@ -47,8 +49,10 @@ $ cm
 ╠ 2020/04/08 13:07:40 🎉 compilation succeeded with no errors
 $ bin/example
 Hello, there
+Hi from Go!
 $ bin/example Damien
 Hello, Damien
+Hi from Go!
 ```
 
 Nice, right? Didn't have to think of anything. Probably could've just been a zsh alias, but hey, this is more fun. I do intend to expand the feature set (see [Features & TODOs](#features--todos)).
