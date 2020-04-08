@@ -9,7 +9,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"time"
 
 	"github.com/rakyll/statik/fs"
 )
@@ -49,13 +48,9 @@ func linkLibs(path string) ([]string, error) {
 
 // wrap calls a given command and args, returning the raw byte slice of the combined stdout and stderr outputs, as well
 // as any encountered errors. The command is invoked using a context timer, so any compilation options that run for
-// longer than compileTimeout (defined in config.go) will be killed using os.Process.Kill. If compileTimeout is not
-// configured, a default value is hardcoded.
+// longer than compileTimeout (defined in config.go) will be killed using os.Process.Kill.
 func wrap(cmd string, args []string) ([]byte, error) {
-	if compileTimeout == nil {
-		*compileTimeout = 5 * time.Minute
-	}
-	ctx, cancel := context.WithTimeout(context.Background(), *compileTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), compileTimeout)
 	defer cancel()
 	command := exec.CommandContext(ctx, cmd, args...)
 	wd, err := os.Getwd()

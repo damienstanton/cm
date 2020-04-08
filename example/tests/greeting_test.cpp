@@ -8,7 +8,10 @@ auto hi(std::string name) -> std::string {
     return "Hello, " + name;
 }
 
-TEST_CASE("Greeting works as expected", "[greeting]") {
+TEST_CASE("Greeting with no args", "[greeting]") {
     REQUIRE(hi("") == "Hello, there");
+}
+
+TEST_CASE("Greeting with an arg", "[greeting]") {
     REQUIRE(hi("Damien") == "Hello, Damien");
 }

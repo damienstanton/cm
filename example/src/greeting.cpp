@@ -1,5 +1,9 @@
 #include "greeting.h"
 
+extern "C" {
+#include "../lib/libhello.h"
+}
+
 auto hi(std::string name) -> std::string {
     if (name == "")
         return "Hello, there";
@@ -11,5 +15,7 @@ auto main(int argc, char* argv[]) -> int {
         std::cout << hi("") << std::endl;
     else
         std::cout << hi(argv[1]) << std::endl;
-    return 0;
+	
+	std::cout << (std::string)HiFromGo() << std::endl;
+	return 0;
 }

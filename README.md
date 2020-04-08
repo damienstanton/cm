@@ -32,14 +32,19 @@ example
 
 ## Compiling
 
-```sh
+```console
 # suppose we are in the example dir in this repo
 $ cm
-2020/04/07 14:24:14 ✅ binary name: "example"
-2020/04/07 14:24:14 ✅ binary output path: "./bin/example"
-2020/04/07 14:24:14 ✅ maximum optimization? false
-2020/04/07 14:24:14 ✅ compiling project...
-2020/04/07 14:24:14 🎉 compilation succeeded with no errors
+╔═════════════════════════╗
+║ Compiler Manager v0.1.0 ║
+╚═════════════════════════╝
+╠ 2020/04/08 13:07:39 binary name: "example"
+╠ 2020/04/08 13:07:39 binary output path: "/Users/damien/oss/cm/example/bin/example"
+╠ 2020/04/08 13:07:39 maximum optimization? false
+╠ 2020/04/08 13:07:39 compiling project...
+╠ 2020/04/08 13:07:39 checking for shared objects in /Users/damien/oss/cm/example/lib...
+╠ 2020/04/08 13:07:39 none found
+╠ 2020/04/08 13:07:40 🎉 compilation succeeded with no errors
 $ bin/example
 Hello, there
 $ bin/example Damien
@@ -56,51 +61,60 @@ A failing test:
 
 ```console
 $ cm -test
-2020/04/07 14:35:35 🔍 entering test mode...
-2020/04/07 14:35:35 🔍 compiling catch2 and tests (this may take a while)...
-2020/04/07 14:35:42 🎉 compilation succeeded with no errors
-2020/04/07 14:35:42 🔍 running ./tests/example tests using catch v2.11.3
-2020/04/07 14:35:42 test failure!
-2020/04/07 14:35:42 💥 wrap error: exit status 1
-2020/04/07 14:35:42
+╔═════════════════════════╗
+║ Compiler Manager v0.1.0 ║
+╚═════════════════════════╝
+╠ 2020/04/08 13:10:12 entering test mode...
+╠ 2020/04/08 13:10:12 compiling catch2 and tests (this may take a while)...
+╠ 2020/04/08 13:10:12 checking for shared objects in /Users/damien/oss/cm/example/lib...
+╠ 2020/04/08 13:10:12 none found
+╠ 2020/04/08 13:10:18 🎉 compilation succeeded with no errors
+╠ 2020/04/08 13:10:18 running /Users/damien/oss/cm/example/tests/example tests using catch v2.11.3
+╠ 2020/04/08 13:10:18 wrap error: exit status 1
+╠ 2020/04/08 13:10:18
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 example is a Catch v2.11.3 host application.
 Run with -? for options
 
 -------------------------------------------------------------------------------
-Greeting works as expected
+Greeting with no args
 -------------------------------------------------------------------------------
-tests/greeting_test.cpp:11
+/Users/damien/oss/cm/example/tests/greeting_test.cpp:11
 ...............................................................................
 
-tests/greeting_test.cpp:12: FAILED:
+/Users/damien/oss/cm/example/tests/greeting_test.cpp:12: FAILED:
   REQUIRE( hi("") == "Hello, there." )
 with expansion:
   "Hello, there" == "Hello, there."
 
 ===============================================================================
-test cases: 1 | 1 failed
-assertions: 1 | 1 failed
+test cases: 2 | 1 passed | 1 failed
+assertions: 2 | 1 passed | 1 failed
 
 
-2020/04/07 14:35:42 🔍 cleaning up test framework...
-2020/04/07 14:35:42 🔍 exited test mode
+╠ 2020/04/08 13:10:18 cleaning up test framework...
+╠ 2020/04/08 13:10:18 exited test mode
 ```
 
 Once the test is fixed:
 
 ```console
-$ cm -test .
-2020/04/07 14:37:34 🔍 entering test mode...
-2020/04/07 14:37:34 🔍 compiling catch2 and tests (this may take a while)...
-2020/04/07 14:37:40 🎉 compilation succeeded with no errors
-2020/04/07 14:37:40 🔍 running ./tests/example tests using catch v2.11.3
-2020/04/07 14:37:40 ===============================================================================
-All tests passed (2 assertions in 1 test case)
+$ cm -test
+╔═════════════════════════╗
+║ Compiler Manager v0.1.0 ║
+╚═════════════════════════╝
+╠ 2020/04/08 13:11:03 entering test mode...
+╠ 2020/04/08 13:11:03 compiling catch2 and tests (this may take a while)...
+╠ 2020/04/08 13:11:03 checking for shared objects in /Users/damien/oss/cm/example/lib...
+╠ 2020/04/08 13:11:03 none found
+╠ 2020/04/08 13:11:09 🎉 compilation succeeded with no errors
+╠ 2020/04/08 13:11:09 running /Users/damien/oss/cm/example/tests/example tests using catch v2.11.3
+╠ 2020/04/08 13:11:09 ===============================================================================
+All tests passed (2 assertions in 2 test cases)
 
 
-2020/04/07 14:37:40 🔍 cleaning up test framework...
-2020/04/07 14:37:40 🔍 exited test mode
+╠ 2020/04/08 13:11:09 cleaning up test framework...
+╠ 2020/04/08 13:11:09 exited test mode
 ```
 
 ### Geez, tests are really slow
@@ -114,17 +128,17 @@ See `cm -help` for options, all of which are optional:
 ```console
 Usage of cm:
   -I string
-    	path to header files
+    path to header files
   -compiler string
-    	c++ compiler to use (default "g++")
+    c++ compiler to use (default "g++")
   -max
-    	maximum optimization
+    maximum optimization
   -o string
-    	name of the output binary
+    name of the output binary
   -std string
-    	c++ standard library to use (default "c++2a")
+    c++ standard library to use (default "c++2a")
   -test
-    	run tests using Catch2
+    run tests using Catch2
 ```
 
 ## Considerations

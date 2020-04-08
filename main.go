@@ -3,7 +3,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -13,6 +12,7 @@ import (
 )
 
 var (
+	debug       = flag.Bool("debug", false, "print the wrapped command for inspection")
 	name        = flag.String("o", "", "name of the output binary")
 	includepath = flag.String("I", "", "path to header files")
 	optimize    = flag.Bool("max", false, "maximum optimization")
@@ -46,13 +46,6 @@ func main() {
 	if !*testMode {
 		runCompile(target)
 	}
-}
-
-// printBanner shows the current cm version
-func printBanner() {
-	fmt.Println("╔═════════════════════════╗")
-	fmt.Printf("║ Compiler Manager %s ║\n", cmVersion)
-	fmt.Println("╚═════════════════════════╝")
 }
 
 // runCompile executes the given compiler config
