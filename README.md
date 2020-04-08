@@ -152,7 +152,7 @@ Usage of cm:
 Not an exhaustive list, will probably use the Issues/Project tab if I end up using this more broadly.
 
 - [x] C++ compilation automation
-- [ ] C++ shared object import
+- [x] C++ shared object import
 - [x] C++ unit test automation
 - [ ] C++ benchmark automation
 - [ ] Unit tests (for `cm` itself)
