@@ -1,8 +1,8 @@
-#include "../src/greeting.hpp"
+#include "../src/greeting.h"
 
 #include "catch.hpp"
 
-fn hi(std::string name)->std::string {
+auto hi(std::string name) -> std::string {
     if (name == "")
         return "Hello, there";
     return "Hello, " + name;

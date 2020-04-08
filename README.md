@@ -34,7 +34,7 @@ example
 
 ```sh
 # suppose we are in the example dir in this repo
-$ cm .
+$ cm
 2020/04/07 14:24:14 ✅ binary name: "example"
 2020/04/07 14:24:14 ✅ binary output path: "./bin/example"
 2020/04/07 14:24:14 ✅ maximum optimization? false
@@ -55,7 +55,7 @@ Nice, right? Didn't have to think of anything. Probably could've just been a zsh
 A failing test:
 
 ```console
-$ cm -test .
+$ cm -test
 2020/04/07 14:35:35 🔍 entering test mode...
 2020/04/07 14:35:35 🔍 compiling catch2 and tests (this may take a while)...
 2020/04/07 14:35:42 🎉 compilation succeeded with no errors
@@ -138,6 +138,7 @@ Usage of cm:
 Not an exhaustive list, will probably use the Issues/Project tab if I end up using this more broadly.
 
 - [x] C++ compilation automation
+- [ ] C++ shared object import
 - [x] C++ unit test automation
 - [ ] C++ benchmark automation
 - [ ] Unit tests (for `cm` itself)

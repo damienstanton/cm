@@ -1,14 +1,12 @@
-#include "greeting.hpp"
+#include "greeting.h"
 
-fn hi(std::string name)->std::string {
+auto hi(std::string name) -> std::string {
     if (name == "")
         return "Hello, there";
     return "Hello, " + name;
 }
 
-// TODO: generate a Go string from cgo to test dylib stuff
-
-fn main(int argc, char* argv[])->int {
+auto main(int argc, char* argv[]) -> int {
     if (argc < 2)
         std::cout << hi("") << std::endl;
     else
