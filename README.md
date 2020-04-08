@@ -46,7 +46,7 @@ $ bin/example Damien
 Hello, Damien
 ```
 
-Nice, right? Didn't have to think of anything. Probably could've just been a zsh alias, but hey, this is more fun. I do intend to expand the feature set (see [Features & TODOs](#Features-&-TODOs)).
+Nice, right? Didn't have to think of anything. Probably could've just been a zsh alias, but hey, this is more fun. I do intend to expand the feature set (see [Features & TODOs](#features--todos)).
 
 ## Testing
 
@@ -105,7 +105,7 @@ All tests passed (2 assertions in 1 test case)
 
 ### Geez, tests are really slow
 
-[I know.](#Features-&-TODOs)
+[I know.](#features--todos)
 
 ## Help
 
