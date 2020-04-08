@@ -6,27 +6,27 @@ _`cm` is a dumb wrapper around your C++ compiler to make it feel a little more l
 
 ```sh
 $ go get github.com/damienstanton/cm
-# or, download from the release tab and add to your PATH
+# or, download from the release tab, add to your PATH
 
 ```
 
 ## Directory Layout Expectations
 
 The tool is naive, and so a certain dir tree is required to find dynamic libraries and tests.
-
-- `src`: where non-test C++ header and impl files live
-- `tests`: where, uh, the tests live
-- `bin`: where binaries are dropped.
-
 Here is the directory layout for a smoke test program:
 
 ```sh
 example
-├── bin
-├── src
+├── bin # where executables are dropped
+│   └── example
+├── lib # where to put shared objects
+│   ├── hello_cgo.go
+│   ├── libhello.h
+│   └── libhello.so
+├── src # where to put headers & impls
 │   ├── greeting.cpp
-│   └── greeting.hpp
-└── tests
+│   └── greeting.h
+└── tests # where to put unit tests
     └── greeting_test.cpp
 ```
 
@@ -127,18 +127,7 @@ See `cm -help` for options, all of which are optional:
 
 ```console
 Usage of cm:
-  -I string
-    path to header files
-  -compiler string
-    c++ compiler to use (default "g++")
-  -max
-    maximum optimization
-  -o string
-    name of the output binary
-  -std string
-    c++ standard library to use (default "c++2a")
-  -test
-    run tests using Catch2
+
 ```
 
 ## Considerations
