@@ -17,7 +17,7 @@ var (
 	includepath = flag.String("I", "", "path to header files")
 	optimize    = flag.Bool("max", false, "maximum optimization")
 	std         = flag.String("std", "c++2a", "c++ standard library to use")
-	compiler    = flag.String("compiler", "g++", "c++ compiler to use")
+	compiler    = flag.String("compiler", "clang++", "c++ compiler to use")
 	testMode    = flag.Bool("test", false, "run tests using Catch2")
 )
 
