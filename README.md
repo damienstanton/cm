@@ -127,12 +127,7 @@ All tests passed (2 assertions in 2 test cases)
 
 ## Help
 
-See `cm -help` for options, all of which are optional:
-
-```console
-Usage of cm:
-
-```
+See `cm -help` for options, all of which are optional.
 
 ## Considerations
 
