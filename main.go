@@ -20,6 +20,7 @@ var (
 	compiler    = flag.String("compiler", "clang++", "c++ compiler to use")
 	testMode    = flag.Bool("test", false, "run tests using Catch2")
 	initF       = flag.Bool("init", false, "scaffold & .gitkeep the required dirs")
+	run         = flag.Bool("run", false, "execute the successfully compiled binary, like go run")
 )
 
 func main() {
@@ -45,7 +46,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("dir write error: %v", err)
 		}
-		log.Println("init completed successfully")
+		log.Printf("init completed successfully for %s\n", target)
 		os.Exit(0)
 	}
 	if *testMode {
@@ -59,11 +60,13 @@ func main() {
 
 // runCompile executes the given compiler config
 func runCompile(target string, args ...string) {
+	binary := target + "/bin/" + *name
 	log.Printf("binary name: \"%s\"", *name)
-	log.Printf("binary output path: \"%s\"", target+"/bin/"+*name)
+	log.Printf("binary output path: \"%s\"", binary)
 	log.Printf("maximum optimization? %v", *optimize)
 	log.Printf("compiling project...\n")
 	compile(includepath, target, args...)
+	wrap(binary, []string{})
 }
 
 // runCompile executes the given compiler config (like runCompile), but with extra operations around unit tests
