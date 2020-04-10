@@ -3,6 +3,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -66,7 +67,16 @@ func runCompile(target string, args ...string) {
 	log.Printf("maximum optimization? %v", *optimize)
 	log.Printf("compiling project...\n")
 	compile(includepath, target, args...)
-	wrap(binary, []string{})
+
+	if *run {
+		log.Printf("running %s...", *name)
+		out, err := wrap(binary, []string{})
+		if err != nil {
+			log.Fatalf("your program compiled but crashed at runtime: %+v\n", err)
+		}
+		fmt.Println("")
+		fmt.Println(string(out))
+	}
 }
 
 // runCompile executes the given compiler config (like runCompile), but with extra operations around unit tests
