@@ -1,4 +1,4 @@
-#include "greeting.h"
+#include "greeting.hpp"
 
 extern "C" {
 #include "../lib/libhello.h"
@@ -15,7 +15,7 @@ auto main(int argc, char* argv[]) -> int {
         std::cout << hi("") << std::endl;
     else
         std::cout << hi(argv[1]) << std::endl;
-	
-	std::cout << (std::string)HiFromGo() << std::endl;
-	return 0;
+
+    std::cout << (std::string)HiFromGo() << std::endl;
+    return 0;
 }

@@ -19,6 +19,7 @@ var (
 	std         = flag.String("std", "c++2a", "c++ standard library to use")
 	compiler    = flag.String("compiler", "clang++", "c++ compiler to use")
 	testMode    = flag.Bool("test", false, "run tests using Catch2")
+	initF       = flag.Bool("init", false, "scaffold & .gitkeep the required dirs")
 )
 
 func main() {
@@ -39,6 +40,14 @@ func main() {
 	}
 
 	printBanner()
+	if *initF {
+		err := mkScaffoldDirs()
+		if err != nil {
+			log.Fatalf("dir write error: %v", err)
+		}
+		log.Println("init completed successfully")
+		os.Exit(0)
+	}
 	if *testMode {
 		runTests(target)
 

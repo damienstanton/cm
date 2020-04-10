@@ -13,6 +13,22 @@ import (
 	"github.com/rakyll/statik/fs"
 )
 
+// mkScaffoldDirs creates the required directory structure and adds a .gitkeep file to each
+func mkScaffoldDirs() error {
+	dirs := []string{"src", "bin", "lib", "tests"}
+	for _, d := range dirs {
+		err := os.Mkdir(d, 0777)
+		if err != nil {
+			return err
+		}
+		err = ioutil.WriteFile(d+"/"+".gitkeep", []byte{}, 0777)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 // dirIsEmpty returns true if the given path is empty, otherwise false
 func dirIsEmpty(path string) (bool, error) {
 	f, err := os.Open(path)
