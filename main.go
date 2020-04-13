@@ -69,15 +69,16 @@ func runCompile(target string, args ...string) {
 	log.Printf("compiling project...\n")
 	compile(includepath, target, args...)
 
-	if *run {
-		if *interactive {
-			log.Printf("running %s in interactive mode...", *name)
-			err := wrapInteractive(binary, []string{})
-			if err != nil {
-				log.Fatalf("your program compiled but crashed at runtime: %+v\n", err)
-			}
+	switch {
+	case *interactive:
+		log.Printf("running %s in interactive mode...", *name)
+		fmt.Println("")
+		err := wrapInteractive(binary, []string{})
+		if err != nil {
+			log.Fatalf("your program compiled but crashed at runtime: %+v\n", err)
 		}
 
+	case *run:
 		log.Printf("running %s...", *name)
 		out, err := wrap(binary, []string{})
 		if err != nil {
@@ -86,6 +87,8 @@ func runCompile(target string, args ...string) {
 		fmt.Println("running:", *name)
 		fmt.Println("")
 		fmt.Println(string(out))
+	default:
+		return
 	}
 }
 
