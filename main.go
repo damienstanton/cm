@@ -15,7 +15,8 @@ import (
 var (
 	debug       = flag.Bool("debug", false, "print the wrapped command for inspection")
 	name        = flag.String("o", "", "name of the output binary")
-	includepath = flag.String("I", "", "path to header files")
+	includepath = flag.String("include", "", "path to header files")
+	interactive = flag.Bool("i", false, "whether to attach to normal stdin/out/err for interactive programs")
 	optimize    = flag.Bool("max", false, "maximum optimization")
 	std         = flag.String("std", "c++2a", "c++ standard library to use")
 	compiler    = flag.String("compiler", "clang++", "c++ compiler to use")
@@ -69,11 +70,20 @@ func runCompile(target string, args ...string) {
 	compile(includepath, target, args...)
 
 	if *run {
+		if *interactive {
+			log.Printf("running %s in interactive mode...", *name)
+			err := wrapInteractive(binary, []string{})
+			if err != nil {
+				log.Fatalf("your program compiled but crashed at runtime: %+v\n", err)
+			}
+		}
+
 		log.Printf("running %s...", *name)
 		out, err := wrap(binary, []string{})
 		if err != nil {
 			log.Fatalf("your program compiled but crashed at runtime: %+v\n", err)
 		}
+		fmt.Println("running:", *name)
 		fmt.Println("")
 		fmt.Println(string(out))
 	}

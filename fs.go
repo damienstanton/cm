@@ -83,6 +83,18 @@ func wrap(cmd string, args []string) ([]byte, error) {
 	return out, nil
 }
 
+// wrapInteractive wraps the command as wrap does, but instead of capturing the combined stdout/stderr in a byte slice,
+// the function is a complete passthrough (that is, stdout and stdin are piped to their expected locations). This is
+// useful when running a program that uses, for example, stdin or readline. Unlike wrap, this function does not
+// automatically time out; A program may be launched using wrapInteractive and run indefinitely.
+func wrapInteractive(cmd string, args []string) error {
+	command := exec.Command(cmd, args...)
+	command.Stdout = os.Stdout
+	command.Stdin = os.Stdin
+	command.Stderr = os.Stderr
+	return command.Run()
+}
+
 // findAll takes a given list of file extensions and a target dir and returns all the files with the right extensions.
 func findAll(target string, extensions []string) ([]string, error) {
 	res := make([]string, 0)

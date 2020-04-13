@@ -4,6 +4,7 @@ extern "C" {
 #include "../lib/libhello.h"
 }
 
+// a smoke test that returns a greeting based on the given input
 auto hi(std::string name) -> std::string {
     if (name == "")
         return "Hello, there";
