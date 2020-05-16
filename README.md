@@ -10,24 +10,15 @@ $ go get github.com/damienstanton/cm
 
 ```
 
-## Directory Layout Expectations
+## Init a new project
+To create a new project, create the dir, `cd` into it, and run:
 
-The tool is naive, and so a certain dir tree is required to find dynamic libraries and tests.
-Here is the directory layout for a smoke test program:
-
-```sh
-example
-├── bin # where executables are dropped
-│   └── example
-├── lib # where to put shared objects
-│   ├── hello_cgo.go
-│   ├── libhello.h
-│   └── libhello.so
-├── src # where to put headers & impls
-│   ├── greeting.cpp
-│   └── greeting.h
-└── tests # where to put unit tests
-    └── greeting_test.cpp
+```console
+$ cm --init
+╔═════════════════════════╗
+║ Compiler Manager v0.1.0 ║
+╚═════════════════════════╝
+╠ 2020/05/15 21:57:37 init completed successfully for /Users/damien/code/tester
 ```
 
 ## Compiling
