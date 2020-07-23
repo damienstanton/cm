@@ -1,6 +1,6 @@
 # **C**`ompiler` **M**`anager`
 
-_`cm` is a dumb wrapper around your C++ compiler to make it feel a little more like `go build`_
+_`cm` is a simple wrapper around your C++ compiler to make it feel a little more like `go build`_
 
 ## Installation
 
